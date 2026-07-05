@@ -40,5 +40,5 @@ colcon build --symlink-install --base-paths f1tenth_gym_ros
 
 echo
 echo "Done. Run the simulator with:"
-echo "  source install/setup.bash"
+echo "  source install/setup.zsh"
 echo "  ros2 launch f1tenth_gym_ros gym_bridge_launch.py"
