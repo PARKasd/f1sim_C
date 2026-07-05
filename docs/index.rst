@@ -11,9 +11,9 @@ The F1TENTH Gym environment is created for research that needs a asynchronous, r
 
 The environment is designed with determinism in mind. All agents' physics simulation are stepped simultaneously, and all randomness are seeded and experiments can be reproduced. The explicit stepping also enables the physics engine to take advantage of faster than real-time execution (up to 30x realtime) and enable massively parallel applications.
 
-Github repo: https://github.com/f1tenth/f1tenth_gym
+This simulator is derived from the original `f1tenth/f1tenth_gym <https://github.com/f1tenth/f1tenth_gym>`_, with the physics, LiDAR, and collision backend replaced by a C++ core.
 
-Note that the GitHub will have more up to date documentation than this page. If you see a mistake, please contribute a fix!
+Note that the repository README will have more up to date documentation than this page. If you see a mistake, please contribute a fix!
 
 Example Usecases
 ------------------

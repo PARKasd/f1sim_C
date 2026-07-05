@@ -20,23 +20,24 @@ Installation
 Using docker
 ----------------
 
-A Dockerfile is provided. A container can be created by running the following commands. Note that ``sudo`` might be needed depending on how you've set up your Docker engine.
+A Dockerfile and a ``docker-compose.yml`` are provided; the image includes ROS 2 and a browser-accessible GUI (noVNC). Note that ``sudo`` might be needed depending on how you've set up your Docker engine.
 
 .. code:: bash
 
-    $ git clone https://github.com/f1tenth/f1tenth_gym.git
-    $ cd f1tenth_gym
-    $ git checkout exp_py
-    $ docker build -t f1tenth_gym -f Dockerfile .
-    $ docker run -it --name=f1tenth_gym_container --rm f1tenth_gym
+    $ git clone https://github.com/PARKasd/f1sim_C.git
+    $ cd f1sim_C
+    $ docker compose up -d
+    $ docker exec -it f1tenth_gym-sim-1 /bin/bash
 
 .. image:: assets/pip_logo.svg
 
 Using pip
 ---------------
 
-The environment is a Python package, and only depends on ``numpy``, ``numba``, ``Pillow``, ``gym``, ``pyyaml``, ``pyglet``, and ``pyopengl``. You can install the package via pip:
+The environment is a Python package, and only depends on ``numpy``, ``numba``, ``Pillow``, ``gym``, ``pyyaml``, ``pyglet``, and ``pyopengl``. Clone the repository and run the install script (it also builds the optional ROS 2 bridge when ROS 2 is installed):
 
 .. code:: bash
 
-    $ pip3 install git+https://github.com/f1tenth/f1tenth_gym.git
+    $ git clone https://github.com/PARKasd/f1sim_C.git
+    $ cd f1sim_C
+    $ ./install.sh

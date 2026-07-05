@@ -20,13 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-version: '3'
+name: f1tenth_gym
 services:
   sim:
     image: f1tenth_gym
     build: ./
     volumes:
-      - .:/sim_ws/src/f1tenth_gym
+      # mount only the ROS package for live editing (sim.yaml, bridge code);
+      # mounting the whole repo would shadow the C++ extension built in the image
+      - ./f1tenth_gym_ros:/sim_ws/src/f1tenth_gym/f1tenth_gym_ros
     environment:
       - DISPLAY=novnc:0.0
     networks:

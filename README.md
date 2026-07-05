@@ -41,10 +41,12 @@ A unified repository for the F1TENTH racing simulator. All simulation — vehicl
 
 - Ubuntu 22.04, Python ≥ 3.9 (3.10 recommended)
 - A C++17 compiler (`sudo apt install build-essential`)
-- **Optional, for the ROS 2 simulator:** ROS 2 Humble, plus
+- **Optional, for the ROS 2 simulator:** ROS 2 Humble. `./install.sh` installs the bridge's ROS dependencies automatically via `rosdep`; to install them manually instead:
   ```bash
   pip3 install transforms3d
-  sudo apt install ros-humble-rviz2 ros-humble-nav2-map-server ros-humble-nav2-lifecycle-manager
+  sudo apt install ros-humble-rviz2 ros-humble-nav2-map-server ros-humble-nav2-lifecycle-manager \
+                   ros-humble-ackermann-msgs ros-humble-xacro ros-humble-robot-state-publisher \
+                   ros-humble-joint-state-publisher
   ```
 
 ## Installation
@@ -52,15 +54,15 @@ A unified repository for the F1TENTH racing simulator. All simulation — vehicl
 One command builds everything:
 
 ```bash
-git clone <this-repository>
-cd f1tenth_gym
+git clone https://github.com/PARKasd/f1sim_C.git
+cd f1sim_C
 ./install.sh
 ```
 
 `install.sh` does two things:
 
 1. `pip3 install -e .` — installs the `f110_gym` package and compiles the C++ simulation core.
-2. If ROS 2 is installed, `colcon build` for the `f1tenth_gym_ros` bridge (skipped otherwise, so the repo works fine as a pure Gym environment on machines without ROS).
+2. If ROS 2 is installed, installs the bridge's ROS dependencies (`rosdep`) and runs `colcon build` for the `f1tenth_gym_ros` bridge (skipped otherwise, so the repo works fine as a pure Gym environment on machines without ROS).
 
 ## Running
 

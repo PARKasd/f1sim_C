@@ -33,9 +33,9 @@ html_theme_options = {
 }
 html_context = {
     "display_github": not is_i18n, # Integrate GitHub
-    "github_user": "f1tenth", # Username
-    "github_repo": "f1tenth_gym", # Repo name
-    "github_version": "exp_py", # Version
+    "github_user": "PARKasd", # Username
+    "github_repo": "f1sim_C", # Repo name
+    "github_version": "main", # Version
     "conf_py_path": "/docs/", # Path in the checkout to the docs root
 }
 

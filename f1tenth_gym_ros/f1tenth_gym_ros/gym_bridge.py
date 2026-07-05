@@ -87,11 +87,12 @@ class GymBridge(Node):
             for param_name in VEHICLE_PARAM_KEYS
         }
 
-        integrator_name = str(self.get_parameter('integrator').value).upper()
-        if integrator_name not in Integrator.__members__:
+        integrator_name = str(self.get_parameter('integrator').value).lower()
+        integrators = {name.lower(): member for name, member in Integrator.__members__.items()}
+        if integrator_name not in integrators:
             valid_integrators = ', '.join(Integrator.__members__.keys())
             raise ValueError(f'integrator should be one of: {valid_integrators}')
-        integrator = Integrator[integrator_name]
+        integrator = integrators[integrator_name]
 
         # env backend
         self.env = gym.make('f110_gym:f110-v0',

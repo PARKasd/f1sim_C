@@ -13,17 +13,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9"]
+        python-version: ["3.9", "3.10"]
 
     steps:
-    - uses: actions/checkout@v2
-    
+    - uses: actions/checkout@v4
+
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-        
+
     - name: Install
       run: |
         python -m pip install --upgrade pip
         pip install -e .
+
+    - name: Smoke test
+      run: |
+        python -c "import gym, f110_gym; env = gym.make('f110_gym:f110-v0', num_agents=1); print('env created:', env)"

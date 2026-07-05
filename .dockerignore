@@ -1,0 +1,10 @@
+.git
+build/
+install/
+log/
+docs/_build/
+gym/f110_gym.egg-info/
+**/__pycache__/
+**/*.pyc
+**/*.so
+.vscode/
