@@ -32,6 +32,7 @@ A unified repository for the F1TENTH racing simulator. All simulation — vehicl
 │   ├── cpp_backend.cpp     # C++ simulation core (dynamics, LiDAR, collision)
 │   └── envs/               # Gym environments (f110-v0, f110-rl-v0), rendering, maps
 ├── examples/               # ROS-free examples (waypoint following, RL rollout)
+├── tools/                  # standalone helpers (obstacle_map_maker GUI, see tools/README.md)
 └── f1tenth_gym_ros/        # ROS 2 package: gym_bridge node, launch, RViz, maps
     ├── config/sim.yaml     # simulation configuration (map, agents, vehicle params)
     └── maps/               # bundled maps (levine, Spielberg_map)
