@@ -40,7 +40,7 @@ A unified repository for the F1TENTH racing simulator. All simulation — vehicl
 
 ## Requirements
 
-- Ubuntu 24.04 (ROS 2 Jazzy) or Ubuntu 22.04 (ROS 2 Humble), Python ≥ 3.10
+- Ubuntu 24.04 (ROS 2 Jazzy)
 - A C++17 compiler and pip (`sudo apt install build-essential python3-pip`)
 - **Optional, for the ROS 2 simulator:** ROS 2 Jazzy (Humble also works). `./install.sh` installs the bridge's ROS dependencies automatically via `rosdep`; to install them manually instead:
   ```bash
@@ -49,7 +49,6 @@ A unified repository for the F1TENTH racing simulator. All simulation — vehicl
                    ros-jazzy-ackermann-msgs ros-jazzy-xacro ros-jazzy-robot-state-publisher \
                    ros-jazzy-joint-state-publisher
   ```
-  (on Humble replace `ros-jazzy-*` with `ros-humble-*` and install transforms3d with `pip3 install transforms3d`)
 
 ## Installation
 
