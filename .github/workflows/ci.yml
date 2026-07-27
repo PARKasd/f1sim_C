@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10"]
+        python-version: ["3.10", "3.12"]
 
     steps:
     - uses: actions/checkout@v4
@@ -30,4 +30,4 @@ jobs:
 
     - name: Smoke test
       run: |
-        python -c "import gym, f110_gym; env = gym.make('f110_gym:f110-v0', num_agents=1); print('env created:', env)"
+        python -c "import gymnasium as gym, f110_gym; env = gym.make('f110_gym:f110-v0', num_agents=1); print('env created:', env)"

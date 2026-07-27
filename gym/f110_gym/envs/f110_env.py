@@ -25,9 +25,8 @@ Author: Hongrui Zheng
 '''
 
 # gym imports
-import gym
-from gym import error, spaces, utils
-from gym.utils import seeding
+import gymnasium as gym
+from gymnasium import spaces
 
 # base classes
 from f110_gym.envs.integrator import Integrator
@@ -38,11 +37,6 @@ from f110_gym.envs.cpp_simulator import CppSimulator, CPP_AVAILABLE
 import numpy as np
 import os
 import time
-
-# gl
-import pyglet
-pyglet.options['debug_gl'] = False
-from pyglet import gl
 
 # constants
 
@@ -94,7 +88,7 @@ class F110Env(gym.Env):
             
             lidar_dist (float, default=0): vertical distance between LiDAR and backshaft
     """
-    metadata = {'render.modes': ['human', 'human_fast']}
+    metadata = {'render_modes': ['human', 'human_fast']}
 
     # rendering
     renderer = None

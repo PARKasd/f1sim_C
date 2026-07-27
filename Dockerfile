@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-FROM ros:humble
+FROM ros:jazzy
 
 SHELL ["/bin/bash", "-c"]
 ARG DEBIAN_FRONTEND=noninteractive
@@ -32,24 +32,24 @@ RUN apt-get update --fix-missing && \
                        vim \
                        tmux \
                        python3-pip \
+                       python3-transforms3d \
                        build-essential \
-                       ros-humble-rviz2
-RUN pip3 install transforms3d
+                       ros-jazzy-rviz2
 
 # this repository provides everything: the gym API, the C++ simulation core,
 # and the ROS 2 bridge
 RUN mkdir -p /sim_ws/src/f1tenth_gym
 COPY . /sim_ws/src/f1tenth_gym
 
-# gym + C++ simulation core
+# gym + C++ simulation core (--break-system-packages: PEP 668, Ubuntu 24.04 base)
 RUN cd /sim_ws/src/f1tenth_gym && \
-    pip3 install -e .
+    pip3 install --break-system-packages -e .
 
 # ROS 2 bridge
-RUN source /opt/ros/humble/setup.bash && \
+RUN source /opt/ros/jazzy/setup.bash && \
     cd /sim_ws && \
     apt-get update --fix-missing && \
-    rosdep install -i --from-path src --rosdistro humble -y && \
+    rosdep install -i --from-path src --rosdistro jazzy -y && \
     colcon build --symlink-install --base-paths src/f1tenth_gym/f1tenth_gym_ros
 
 WORKDIR /sim_ws

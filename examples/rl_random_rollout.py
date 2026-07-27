@@ -1,4 +1,4 @@
-import gym
+import gymnasium as gym
 import numpy as np
 
 import f110_gym  # noqa: F401
@@ -9,7 +9,7 @@ def main():
         'f110_gym:f110-rl-v0',
         map='levine',
         map_ext='.pgm',
-        max_episode_steps=200,
+        max_episode_length=200,
         start_pose=np.array([0.0, 0.0, 0.0]),
     )
 

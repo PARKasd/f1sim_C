@@ -23,7 +23,9 @@
   <exec_depend>nav2_lifecycle_manager</exec_depend>
   <exec_depend>teleop_twist_keyboard</exec_depend>
   
-  <depend>python-transforms3d-pip</depend>
+  <!-- humble (Ubuntu 22.04) has no python3-transforms3d apt package, so it falls back to pip -->
+  <depend condition="$ROS_DISTRO == humble">python-transforms3d-pip</depend>
+  <depend condition="$ROS_DISTRO != humble">python3-transforms3d</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

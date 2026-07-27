@@ -34,7 +34,7 @@ from geometry_msgs.msg import Quaternion
 from ackermann_msgs.msg import AckermannDriveStamped
 from tf2_ros import TransformBroadcaster
 
-import gym
+import gymnasium as gym
 import numpy as np
 from f110_gym.envs import Integrator
 from f110_gym.envs.vehicle_params import DEFAULT_VEHICLE_PARAMS, VEHICLE_PARAM_KEYS

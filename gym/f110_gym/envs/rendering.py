@@ -29,6 +29,7 @@ Author: Hongrui Zheng
 
 # opengl stuff
 import pyglet
+pyglet.options['debug_gl'] = False
 from pyglet.gl import *
 
 # other

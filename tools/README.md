@@ -36,7 +36,7 @@ ROS 환경 없이 실행 가능한 독립 도구입니다 (`python3-tk`, `Pillow
 내부적으로 아래 명령을 실행합니다 (새 launch 파일 사용):
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash   # 설치된 ROS 2 배포판 자동 감지
 source ~/f1tenth_gym/install/setup.bash
 ros2 launch f1tenth_gym_ros obstacle_sim_launch.py \
     map_path:=/abs/path/<이름> map_img_ext:=.png \

@@ -23,7 +23,7 @@ The following pseudo code provides a skeleton for creating a simulation loop.
 
 .. code:: python
 
-    import gym
+    import gymnasium as gym
     import numpy as np
     from your_custom_policy import planner # the policy/motion planner that you create
 

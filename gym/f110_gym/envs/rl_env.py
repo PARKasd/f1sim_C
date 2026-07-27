@@ -1,5 +1,5 @@
-import gym
-from gym import spaces
+import gymnasium as gym
+from gymnasium import spaces
 import numpy as np
 
 from f110_gym.envs.f110_env import F110Env
@@ -18,10 +18,12 @@ class F110RLEnv(gym.Env):
         sin(theta), cos(theta)
     """
 
-    metadata = {'render.modes': ['human', 'human_fast']}
+    metadata = {'render_modes': ['human', 'human_fast']}
 
     def __init__(self, **kwargs):
-        self.max_episode_steps = kwargs.pop('max_episode_steps', 1000)
+        # named max_episode_length because gymnasium.make() intercepts a
+        # max_episode_steps kwarg and would wrap the env in TimeLimit
+        self.max_episode_steps = kwargs.pop('max_episode_length', 1000)
         self.start_pose = np.asarray(
             kwargs.pop('start_pose', [0.0, 0.0, 0.0]),
             dtype=np.float64)

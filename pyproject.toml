@@ -1,0 +1,4 @@
+[build-system]
+# numpy 2.x headers produce extensions that run on numpy >= 1.22 as well
+requires = ["setuptools>=61", "wheel", "numpy>=2.0"]
+build-backend = "setuptools.build_meta"

@@ -5,12 +5,27 @@
 set -e
 cd "$(dirname "$0")"
 
-echo "[1/2] Installing f110_gym (compiles the C++ simulation core)..."
-pip3 install -e .
+if ! python3 -m pip --version >/dev/null 2>&1; then
+    echo "ERROR: pip is not available. Install it first:  sudo apt install python3-pip"
+    exit 1
+fi
 
-# prefer humble (the distro this repo targets) when several are installed
-if [ -f /opt/ros/humble/setup.bash ]; then
-    ROS_SETUP=/opt/ros/humble/setup.bash
+# PEP 668 (Ubuntu >= 23.04): installing outside a venv needs --break-system-packages
+PIP_FLAGS=""
+if [ -z "$VIRTUAL_ENV" ] && \
+   [ -f "$(python3 -c 'import sysconfig,os; print(os.path.join(sysconfig.get_path("stdlib"), "EXTERNALLY-MANAGED"))')" ]; then
+    PIP_FLAGS="--user --break-system-packages"
+fi
+
+echo "[1/2] Installing f110_gym (compiles the C++ simulation core)..."
+python3 -m pip install $PIP_FLAGS -e .
+
+# prefer the distro already sourced in this shell, then jazzy (the distro this
+# repo targets), otherwise the newest installed one
+if [ -n "$ROS_DISTRO" ] && [ -f "/opt/ros/$ROS_DISTRO/setup.bash" ]; then
+    ROS_SETUP="/opt/ros/$ROS_DISTRO/setup.bash"
+elif [ -f /opt/ros/jazzy/setup.bash ]; then
+    ROS_SETUP=/opt/ros/jazzy/setup.bash
 else
     ROS_SETUP="$(ls /opt/ros/*/setup.bash 2>/dev/null | sort | tail -n 1)"
 fi
@@ -40,5 +55,5 @@ colcon build --symlink-install --base-paths f1tenth_gym_ros
 
 echo
 echo "Done. Run the simulator with:"
-echo "  source install/setup.zsh"
+echo "  source install/setup.bash   # or setup.zsh"
 echo "  ros2 launch f1tenth_gym_ros gym_bridge_launch.py"

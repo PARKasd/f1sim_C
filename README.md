@@ -40,15 +40,16 @@ A unified repository for the F1TENTH racing simulator. All simulation — vehicl
 
 ## Requirements
 
-- Ubuntu 22.04, Python ≥ 3.9 (3.10 recommended)
-- A C++17 compiler (`sudo apt install build-essential`)
-- **Optional, for the ROS 2 simulator:** ROS 2 Humble. `./install.sh` installs the bridge's ROS dependencies automatically via `rosdep`; to install them manually instead:
+- Ubuntu 24.04 (ROS 2 Jazzy) or Ubuntu 22.04 (ROS 2 Humble), Python ≥ 3.10
+- A C++17 compiler and pip (`sudo apt install build-essential python3-pip`)
+- **Optional, for the ROS 2 simulator:** ROS 2 Jazzy (Humble also works). `./install.sh` installs the bridge's ROS dependencies automatically via `rosdep`; to install them manually instead:
   ```bash
-  pip3 install transforms3d
-  sudo apt install ros-humble-rviz2 ros-humble-nav2-map-server ros-humble-nav2-lifecycle-manager \
-                   ros-humble-ackermann-msgs ros-humble-xacro ros-humble-robot-state-publisher \
-                   ros-humble-joint-state-publisher
+  sudo apt install python3-transforms3d \
+                   ros-jazzy-rviz2 ros-jazzy-nav2-map-server ros-jazzy-nav2-lifecycle-manager \
+                   ros-jazzy-ackermann-msgs ros-jazzy-xacro ros-jazzy-robot-state-publisher \
+                   ros-jazzy-joint-state-publisher
   ```
+  (on Humble replace `ros-jazzy-*` with `ros-humble-*` and install transforms3d with `pip3 install transforms3d`)
 
 ## Installation
 
@@ -103,7 +104,7 @@ python3 rl_random_rollout.py     # single-agent RL environment (f110-rl-v0)
 Or directly:
 
 ```python
-import gym, numpy as np, f110_gym
+import gymnasium as gym, numpy as np, f110_gym
 
 env = gym.make('f110_gym:f110-v0', map='levine', map_ext='.pgm', num_agents=1)
 obs, _, done, _ = env.reset(np.array([[0.0, 0.0, 0.0]]))

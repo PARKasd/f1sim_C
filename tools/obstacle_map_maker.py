@@ -9,6 +9,7 @@ ROS 를 import 하지 않는 독립 도구다. 실행:
     python3 tools/obstacle_map_maker.py
 """
 
+import glob
 import math
 import os
 import signal
@@ -28,7 +29,18 @@ from PIL import Image, ImageDraw
 
 REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_MAP_DIRS = [os.path.join(REPO_DIR, 'f1tenth_gym_ros', 'maps')]
-ROS_SETUP = '/opt/ros/humble/setup.bash'
+def _find_ros_setup():
+    # prefer the distro sourced in this shell, then jazzy (the distro this
+    # repo targets), otherwise the newest installed one
+    distro = os.environ.get('ROS_DISTRO')
+    if distro and os.path.isfile(f'/opt/ros/{distro}/setup.bash'):
+        return f'/opt/ros/{distro}/setup.bash'
+    if os.path.isfile('/opt/ros/jazzy/setup.bash'):
+        return '/opt/ros/jazzy/setup.bash'
+    candidates = sorted(glob.glob('/opt/ros/*/setup.bash'))
+    return candidates[-1] if candidates else '/opt/ros/jazzy/setup.bash'
+
+ROS_SETUP = _find_ros_setup()
 WS_SETUP = os.path.join(REPO_DIR, 'install', 'setup.bash')
 LAUNCH_PKG = 'f1tenth_gym_ros'
 LAUNCH_FILE = 'obstacle_sim_launch.py'
